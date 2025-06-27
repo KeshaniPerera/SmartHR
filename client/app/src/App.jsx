@@ -2,7 +2,7 @@ import './App.css'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from 'react'
 import Home from "./assets/pages/Home";
-import SignIn from "./assets/pages/SignIn";
+import Login from './assets/pages/SignIn.jsx';
 import NavBar from './assets/components/NavBar.jsx'; 
 import Footer from './assets/components/Footer.jsx';
 
@@ -11,7 +11,7 @@ function App() {
     <NavBar />
     <Routes>
        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<SignIn />} />
+        <Route path="/login" element={<Login />} />
 
     </Routes>
      <Footer />
