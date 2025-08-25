@@ -15,6 +15,8 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
     "apps.nlp",
+    "apps.prehire",
+    
 ]
 
 
@@ -57,3 +59,5 @@ REST_FRAMEWORK = {
     "UNAUTHENTICATED_USER": None,
     "UNAUTHENTICATED_TOKEN": None,
 }
+
+CORS_ALLOW_ALL_ORIGINS = True 

@@ -1,0 +1,18 @@
+{
+  "feature_order": [
+    "Age",
+    "Gender",
+    "BusinessTravel",
+    "Department",
+    "Education",
+    "EducationField",
+    "JobRole",
+    "MaritalStatus",
+    "DistanceFromHome",
+    "TotalWorkingYears",
+    "NumCompaniesWorked",
+    "StockOptionLevel",
+    "TrainingTimesLastYear"
+  ],
+  "sklearn_version": "1.7.1"
+}
