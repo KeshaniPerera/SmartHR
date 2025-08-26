@@ -16,6 +16,11 @@ export default function Home() {
           <h3>Pre-Hire Attrition Prediction</h3>
           <p>Enter candidate details and predict attrition risk.</p>
         </Link>
+
+        <Link to="/turnover" className="card">
+          <h3>Turnover Risk</h3>
+          <p>Rank current employees by predicted turnover risk (reads from Employee Insights).</p>
+        </Link>
       </div>
     </div>
   );
