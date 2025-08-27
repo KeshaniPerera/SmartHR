@@ -1,0 +1,19 @@
+{
+  "feature_order": [
+    "JobInvolvement",
+    "JobLevel",
+    "JobSatisfaction",
+    "EnvironmentSatisfaction",
+    "RelationshipSatisfaction",
+    "WorkLifeBalance",
+    "YearsAtCompany",
+    "YearsInCurrentRole",
+    "YearsSinceLastPromotion",
+    "YearsWithCurrManager",
+    "OverTime",
+    "MonthlyIncome",
+    "JobRole",
+    "Department"
+  ],
+  "sklearn_version": "1.7.1"
+}

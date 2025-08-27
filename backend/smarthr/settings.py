@@ -17,6 +17,7 @@ INSTALLED_APPS = [
     "apps.nlp",
     "apps.prehire",
     "apps.turnover",
+    "apps.performance",
 
 ]
 

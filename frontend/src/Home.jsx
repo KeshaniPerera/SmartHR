@@ -21,6 +21,11 @@ export default function Home() {
           <h3>Turnover Risk</h3>
           <p>Rank current employees by predicted turnover risk (reads from Employee Insights).</p>
         </Link>
+
+         <Link to="/performance" className="card">
+          <h3>Performance</h3>
+          <p>Identify likely high performers for leadership & mentorship.</p>
+        </Link>
       </div>
     </div>
   );
