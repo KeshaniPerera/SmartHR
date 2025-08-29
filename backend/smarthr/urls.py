@@ -5,6 +5,9 @@ urlpatterns = [
     path("api/prehire/", include("apps.prehire.urls")),  
     path("api/turnover/", include("apps.turnover.urls")),
     path("api/performance/", include("apps.performance.urls")),
+    path("api/attendance/", include("apps.attendance.urls")),
+    
+
 
 
 

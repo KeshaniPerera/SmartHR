@@ -18,6 +18,8 @@ INSTALLED_APPS = [
     "apps.prehire",
     "apps.turnover",
     "apps.performance",
+    "apps.attendance.apps.AttendanceConfig",
+
 
 ]
 
@@ -45,6 +47,15 @@ USE_TZ = True
 # Mongo config (used by our helper)
 MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017")
 MONGO_DB = os.getenv("MONGO_DB", "smarthr")
+
+TIME_ZONE = "Asia/Colombo"
+USE_TZ = True
+
+MONGODB_URI = "mongodb+srv://keshani20001:eLSirljKQERFpY2K@cluster0.yjt01ev.mongodb.net/?retryWrites=true&w=majority"
+MONGODB_DB_NAME = "smarthr"            # your DB with employees
+MONGODB_GRIDFS_BUCKET = "faces"        # faces.files / faces.chunks
+ATTENDANCE_SIM_THRESHOLD = 0.45        # tune 0.40–0.50
+
 
 
 

@@ -4,6 +4,7 @@ import PolicyChat from "./PolicyChat.jsx";
 import PrehireForm from "./PrehireForm.jsx";
 import TurnoverRank from "./TurnOverRank.jsx";
 import PerformanceRank from "./PerformanceRank.jsx";  
+import AttendanceScan from "./AttendanceScan.jsx";
 
 import NotFound from "./NotFound.jsx";
 import "./App.css";
@@ -19,6 +20,8 @@ export default function App() {
           <NavLink to="/prehire" className="navlink">Pre-Hire Prediction</NavLink>
           <NavLink to="/turnover" className="navlink">Turnover Risk</NavLink>
           <NavLink to="/performance" className="navlink">Performance Ranking</NavLink>
+          <NavLink to="/attendance" className="navlink"> Mark Attendance </NavLink>
+
 
         </nav>
       </header>
@@ -30,6 +33,8 @@ export default function App() {
           <Route path="/prehire" element={<PrehireForm />} />
           <Route path="/turnover" element={<TurnoverRank />} />
           <Route path="/performance" element={<PerformanceRank />} />
+          <Route path="/attendance" element={<AttendanceScan />} />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
