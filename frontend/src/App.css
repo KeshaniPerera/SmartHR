@@ -43,7 +43,7 @@ body { margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial; back
 
 label { display:flex; flex-direction:column; gap:6px; font-size:14px; }
 input, select { padding:10px; border:1px solid #ccc; border-radius:8px; font-size:14px; background:#fff; }
-.btn { margin-top:12px; padding:10px 14px; border:none; background:#0a7; color:#fff; border-radius:8px; cursor:pointer; }
+.btn { margin-top:12px; padding:10px 14px; border:none; background:rgb(8, 119, 23); color:#fff; border-radius:8px; cursor:pointer; }
 .btn:disabled { opacity:.7; cursor:not-allowed; }
 
 .panel { margin-top:16px; background:#fff; border:1px solid #eee; border-radius:12px; padding:14px; }

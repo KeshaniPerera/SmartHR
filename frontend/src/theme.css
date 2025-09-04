@@ -1,0 +1,281 @@
+/* src/theme.css */
+@import "tailwindcss";
+
+/* ---------------------- */
+/* Design tokens (light)  */
+/* ---------------------- */
+:root {
+  /* type */
+  --font-sans: Roboto, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+
+  /* brand (green) */
+  --brand-50:  #e8f8f1;
+  --brand-100: #ccf0e6;
+  --brand-600: #00aa77;
+  --brand-700: #078a62;
+
+  /* neutrals / surfaces */
+  --bg:  #f8f9fb;  /* page background */
+  --fg:  #111111;  /* body text       */
+  --muted: #646a73; /* secondary text  */
+  --line: #e6e9ef;  /* soft borders    */
+
+  /* radii, shadow, container */
+  --r-xl:  .75rem;
+  --r-2xl: 1rem;
+  --shadow-card: 0 6px 20px -6px rgb(0 0 0 / 0.08);
+  --maxw: 1600px;
+}
+
+/* ---------------------- */
+/* Base                   */
+/* ---------------------- */
+@layer base {
+  html, body, #root { height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a { color: var(--brand-700); text-decoration: none; }
+  a:hover { color: var(--brand-600); }
+
+  /* focus styles for accessibility */
+  :focus-visible {
+    outline: 2px solid color-mix(in oklab, var(--brand-600) 70%, white);
+    outline-offset: 2px;
+  }
+}
+
+/* ---------------------- */
+/* Utilities              */
+/* ---------------------- */
+@layer utilities {
+  .container-xxl {
+    width: min(var(--maxw), 96vw);
+    margin-inline: auto;
+    padding-inline: 1.5rem; /* 24px */
+  }
+  .grid-autofill {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+}
+
+/* ---------------------- */
+/* Components             */
+/* ---------------------- */
+@layer components {
+  /* Top bar + nav */
+  .topbar {
+    position: sticky; top: 0; z-index: 30;
+    background: #fff; border-bottom: 1px solid var(--line);
+    height: 56px; display: flex; align-items: center;
+  }
+  .navlink {
+    border-radius: .5rem; padding: .375rem .75rem;
+    color: rgb(71 85 105); /* slate-600 */
+    transition: background .15s ease, color .15s ease;
+  }
+  .navlink:hover,
+  .navlink-active {
+    background: color-mix(in oklab, var(--brand-600) 12%, white);
+    color: color-mix(in oklab, var(--brand-600) 90%, black);
+  }
+
+  /* Cards / Panels */
+  .card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--r-2xl);
+    box-shadow: var(--shadow-card);
+  }
+  .panel {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--r-2xl);
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: .5rem;
+    padding: .5rem .875rem; /* ~8px 14px */
+    border-radius: var(--r-xl);
+    font-weight: 600; line-height: 1.1;
+    transition: background .15s ease, color .15s ease, opacity .15s ease, transform .05s ease;
+    user-select: none;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn:disabled { opacity: .7; cursor: not-allowed; }
+
+  .btn-primary { color: #fff; background: var(--brand-600); }
+  .btn-primary:hover { background: var(--brand-700); }
+
+  .btn-secondary { color: var(--brand-700); background: var(--brand-50); }
+  .btn-secondary:hover { background: var(--brand-100); }
+
+  .btn-outline {
+    color: var(--brand-700);
+    background: transparent;
+    border: 1px solid var(--brand-600);
+  }
+  .btn-outline:hover { background: var(--brand-50); }
+
+  .btn-ghost {
+    color: rgb(71 85 105);
+    background: transparent;
+  }
+  .btn-ghost:hover { background: rgb(241 245 249); } /* slate-100 */
+
+  /* Inputs */
+  .label { display: block; font-size: .875rem; color: var(--muted); margin-bottom: .25rem; }
+  .input, .select, .textarea {
+    width: 100%;
+    padding: .5rem .75rem;
+    border: 1px solid rgb(203 213 225); /* slate-300 */
+    border-radius: var(--r-xl);
+    background: #fff; color: var(--fg);
+    outline: none;
+  }
+  .textarea { min-height: 120px; resize: vertical; }
+  .input:focus, .select:focus, .textarea:focus {
+    /* fallbacks for older browsers */
+    border-color: var(--brand-600);
+    box-shadow: 0 0 0 3px rgba(0,170,119,.18);
+
+    /* modern */
+    border-color: color-mix(in oklab, var(--brand-600) 60%, white);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--brand-600) 25%, transparent);
+  }
+  .helptext { font-size: .8125rem; color: var(--muted); margin-top: .25rem; }
+  .error {
+    background: #fff3f3; color: #7a1d1d; border: 1px solid #f3d5d5;
+    padding: .75rem; border-radius: var(--r-2xl);
+  }
+
+  /* Badges / Chips */
+  .badge {
+    display:inline-flex; align-items:center; gap:.375rem;
+    background: var(--brand-50);
+    color: var(--brand-700);
+    border-radius: 9999px;
+    padding: .125rem .5rem;
+    font-size: .75rem; font-weight: 700;
+  }
+
+  /* Table (light) */
+  .table {
+    width: 100%; border-collapse: collapse; font-size: .9375rem;
+    background: #fff; border: 1px solid var(--line); border-radius: var(--r-2xl);
+    overflow: hidden;
+  }
+  .table thead th {
+    text-align: left; font-weight: 700; color: #3b4452;
+    background: #f9fafb; /* near white */
+    padding: .75rem 1rem; border-bottom: 1px solid var(--line);
+  }
+  .table tbody td {
+    padding: .75rem 1rem; border-top: 1px solid var(--line);
+  }
+  .table tbody tr:hover { background: #fbfbfc; }
+
+  /* Skeleton */
+  .skeleton {
+    background: linear-gradient(90deg, #eee 25%, #f5f5f5 37%, #eee 63%);
+    background-size: 400% 100%;
+    animation: shimmer 1.2s ease-in-out infinite;
+    border-radius: var(--r-xl);
+  }
+  @keyframes shimmer {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+  }
+}
+/* ==== SmartHR — Green / White / Black / Grey theme ==== */
+:root{
+  --green: #16a34a;        /* primary green */
+  --green-700: #15803d;    /* darker on hover */
+  --accent: #C4D160;       /* soft lime accent (your requested green) */
+  --text: #0b0f13;         /* near-black */
+  --muted: #6b7280;        /* grey-500 */
+  --panel: #ffffff;
+  --panel-alt: #f5f7f8;    /* light grey surface */
+  --border: #e5e7eb;       /* grey-200 */
+  --ring: rgba(22,163,74,.18);
+  --shadow: 0 2px 6px rgba(0,0,0,.06), 0 10px 24px rgba(0,0,0,.04);
+}
+
+.dash { max-width: 1100px; margin: 0 auto; padding: 24px; color: var(--text); }
+.dash-topbar{
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding: 10px 0 18px; border-bottom: 1px solid var(--border);
+}
+.dash-brand-text{ font-weight: 800; font-size: 1.15rem; letter-spacing: .3px; }
+
+.dash-user{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.dash-empid{ font-weight:600; color: var(--text); opacity: .9; }
+
+/* Role badges (no emojis) */
+.dash-badge{
+  text-transform: uppercase; font-size: 11px; letter-spacing: .6px;
+  padding: 6px 8px; border-radius: 999px; color: #0b0f13; background: #e5e7eb;
+  border: 1px solid #d1d5db;
+}
+.dash-badge.hr{ color:#0b0f13; background: #d9fbe2; border-color:#b7efc5; }   /* subtle green for HR */
+.dash-badge.emp{ color:#0b0f13; background: #eef2f3; border-color:#dfe4e6; }  /* neutral for employee */
+
+.dash-btn{
+  border-radius: 10px; padding: 8px 14px; cursor: pointer;
+  transition: transform .16s ease, box-shadow .16s ease, background .16s ease, color .16s ease;
+  border: 1px solid transparent;
+}
+
+/* Colored Logout button (green, as requested) */
+.dash-btn-logout{
+  background: var(--green); color: #fff; border-color: var(--green);
+  box-shadow: var(--shadow);
+}
+.dash-btn-logout:hover{ background: var(--green-700); border-color: var(--green-700); transform: translateY(-1px); }
+.dash-btn-logout:focus{ outline: none; box-shadow: 0 0 0 4px var(--ring); }
+
+.dash-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.dash-logo-img {
+  height: 48px;           /* tweak to your liking (24–36px) */
+  width: auto;
+  display: block;
+}
+.dash-brand:hover .dash-logo-img {
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.08));
+}
+
+
+/* Page head */
+.dash-head{ margin: 18px 0 18px; }
+.dash-title{ margin:0; font-size:1.6rem; font-weight:800; letter-spacing:.2px; }
+.dash-subtitle{ margin:6px 0 0; color: var(--muted); }
+
+/* Card grid */
+.grid-cards{
+  display:grid;   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.card {
+  background:  #ffffff;
+  border: 1px solid color-mix(in oklab, var(--brand-600) 18%, var(--line));
+}
+
+.card:hover {
+  background:  #dcf4e2;
+  border-color: var(--brand-600);
+}
+
+
+/* Professional cards (no emojis). Left*
+

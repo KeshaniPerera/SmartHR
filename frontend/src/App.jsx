@@ -1,8 +1,10 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+// src/App.jsx
+import { Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
-import SignIn from "./SignIn";
+import Layout from "./Layout";
 
-import Home from "./Home";
+import SignIn from "./SignIn";
+import Home from "./DashboardHome";        // dashboard body (no header)
 import PolicyChat from "./PolicyChat";
 import PrehireForm from "./PrehireForm";
 import TurnoverRank from "./TurnoverRank";
@@ -14,27 +16,36 @@ import "./App.css";
 export default function App() {
   return (
     <div className="app">
-      <header className="topbar">
-        <div className="brand">SmartHR</div>
-        <nav className="nav">
-
-        </nav>
-      </header>
-
       <main className="container">
         <Routes>
-           <Route path="/login" element={<SignIn />} />
+          {/* Public route */}
+          <Route path="/login" element={<SignIn />} />
 
-        <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
-        <Route path="/policy-chat" element={<ProtectedRoute><PolicyChat /></ProtectedRoute>} />
-        <Route path="/attendance" element={<ProtectedRoute><AttendanceScan /></ProtectedRoute>} />
-        <Route path="/prehire" element={<ProtectedRoute><PrehireForm /></ProtectedRoute>} />
-        <Route path="/turnover" element={<ProtectedRoute><TurnoverRank /></ProtectedRoute>} />
-        <Route path="/performance" element={<ProtectedRoute><PerformanceRank /></ProtectedRoute>} />
+          {/* Protected layout with persistent SmartHR header */}
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Layout />
+              </ProtectedRoute>
+            }
+          >
+            {/* Index dashboard (under the persistent header) */}
+            <Route index element={<Home />} />
 
-        <Route path="*" element={<NotFound />} />
+            {/* Nested feature routes (render inside Layout) */}
+            <Route path="policy-chat" element={<PolicyChat />} />
+            <Route path="attendance" element={<AttendanceScan />} />
+            <Route path="prehire" element={<PrehireForm />} />
+            <Route path="turnover" element={<TurnoverRank />} />
+            <Route path="performance" element={<PerformanceRank />} />
+          </Route>
+
+          {/* Fallback */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
+
       <footer className="footer">© {new Date().getFullYear()} SmartHR</footer>
     </div>
   );
