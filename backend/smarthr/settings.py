@@ -14,21 +14,37 @@ ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
+    "django.contrib.sessions",
     "apps.nlp",
     "apps.prehire",
     "apps.turnover",
     "apps.performance",
     "apps.attendance.apps.AttendanceConfig",
+    "apps.accounts",
 
 
 ]
 
+# Sessions
+SESSION_COOKIE_NAME = "sessionid"
+SESSION_COOKIE_AGE = 60 * 60 * 8   # 8 hours
+SESSION_COOKIE_SAMESITE = "Lax"    # "None" if cross-site HTTPS
+SESSION_COOKIE_SECURE = False      # True on HTTPS
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
 
 
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",      
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    # ...
 ]
+
 
 ROOT_URLCONF = "smarthr.urls"
 TEMPLATES = []
@@ -37,8 +53,10 @@ WSGI_APPLICATION = "smarthr.wsgi.application"
 # Django ORM not used; keep a dummy DB to satisfy Django internals
 DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3"}}
 
-# CORS (Frontend on Vite 5173)
-CORS_ALLOW_ALL_ORIGINS = True  # keep simple for dev
+# CORS (adjust ports if needed)
+CORS_ALLOWED_ORIGINS = ["http://localhost:5173","http://127.0.0.1:5173"]
+CORS_ALLOW_CREDENTIALS = True
+CSRF_TRUSTED_ORIGINS = ["http://localhost:5173","http://127.0.0.1:5173"]
 
 # Timezone
 TIME_ZONE = "Asia/Colombo"
@@ -78,4 +96,3 @@ REST_FRAMEWORK = {
     "UNAUTHENTICATED_TOKEN": None,
 }
 
-CORS_ALLOW_ALL_ORIGINS = True 

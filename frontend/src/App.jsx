@@ -1,12 +1,14 @@
-import { NavLink, Routes, Route } from "react-router-dom";
-import Home from  "./home.jsx";
-import PolicyChat from "./PolicyChat.jsx";
-import PrehireForm from "./PrehireForm.jsx";
-import TurnoverRank from "./TurnOverRank.jsx";
-import PerformanceRank from "./PerformanceRank.jsx";  
-import AttendanceScan from "./AttendanceScan.jsx";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ProtectedRoute from "./ProtectedRoute";
+import SignIn from "./SignIn";
 
-import NotFound from "./NotFound.jsx";
+import Home from "./Home";
+import PolicyChat from "./PolicyChat";
+import PrehireForm from "./PrehireForm";
+import TurnoverRank from "./TurnoverRank";
+import PerformanceRank from "./PerformanceRank";
+import AttendanceScan from "./AttendanceScan";
+import NotFound from "./NotFound";
 import "./App.css";
 
 export default function App() {
@@ -15,27 +17,22 @@ export default function App() {
       <header className="topbar">
         <div className="brand">SmartHR</div>
         <nav className="nav">
-          <NavLink to="/" end className="navlink">Home</NavLink>
-          <NavLink to="/policy-chat" className="navlink">Policy Chat</NavLink>
-          <NavLink to="/prehire" className="navlink">Pre-Hire Prediction</NavLink>
-          <NavLink to="/turnover" className="navlink">Turnover Risk</NavLink>
-          <NavLink to="/performance" className="navlink">Performance Ranking</NavLink>
-          <NavLink to="/attendance" className="navlink"> Mark Attendance </NavLink>
-
 
         </nav>
       </header>
 
       <main className="container">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/policy-chat" element={<PolicyChat />} />
-          <Route path="/prehire" element={<PrehireForm />} />
-          <Route path="/turnover" element={<TurnoverRank />} />
-          <Route path="/performance" element={<PerformanceRank />} />
-          <Route path="/attendance" element={<AttendanceScan />} />
+           <Route path="/login" element={<SignIn />} />
 
-          <Route path="*" element={<NotFound />} />
+        <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+        <Route path="/policy-chat" element={<ProtectedRoute><PolicyChat /></ProtectedRoute>} />
+        <Route path="/attendance" element={<ProtectedRoute><AttendanceScan /></ProtectedRoute>} />
+        <Route path="/prehire" element={<ProtectedRoute><PrehireForm /></ProtectedRoute>} />
+        <Route path="/turnover" element={<ProtectedRoute><TurnoverRank /></ProtectedRoute>} />
+        <Route path="/performance" element={<ProtectedRoute><PerformanceRank /></ProtectedRoute>} />
+
+        <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <footer className="footer">© {new Date().getFullYear()} SmartHR</footer>

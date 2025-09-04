@@ -6,6 +6,8 @@ urlpatterns = [
     path("api/turnover/", include("apps.turnover.urls")),
     path("api/performance/", include("apps.performance.urls")),
     path("api/attendance/", include("apps.attendance.urls")),
+    path("api/auth/", include("apps.accounts.urls")),
+
     
 
 
