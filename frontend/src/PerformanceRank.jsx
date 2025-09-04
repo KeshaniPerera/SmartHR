@@ -47,9 +47,9 @@ export default function PerformanceRank() {
           </thead>
           <tbody>
             {rows.map((r, i) => (
-              <tr key={r.employee_id || i} style={{borderTop:"1px solid #eee"}}>
+              <tr key={r.emp_id || i} style={{borderTop:"1px solid #eee"}}>
                 <td>{i+1}</td>
-                <td>{r.full_name || "—"} ({r.employee_id || "—"})</td>
+                <td>{r.full_name || "—"} ({r.emp_id || "—"})</td>
                 <td>{r.department || "—"}</td>
                 <td>{r.job_role || "—"}</td>
                 <td align="right">{(r.probability*100).toFixed(2)}%</td>

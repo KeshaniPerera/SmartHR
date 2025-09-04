@@ -58,6 +58,11 @@ ATTENDANCE_SIM_THRESHOLD = 0.45        # tune 0.40–0.50
 
 
 
+# business rules (you can tune these)
+WORK_START_TIME = "08:30"   # informational
+LATE_START_TIME = "09:10"   # late if inTime >= 09:10
+LATE_CUTOFF_TIME = "12:00"  # and inTime <= 12:00 (midday)
+
 
 REST_FRAMEWORK = {
     # renderers/parsers: JSON only
