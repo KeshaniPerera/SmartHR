@@ -1,0 +1,27 @@
+# --- Web framework & API ---
+Django>=5.0,<6.0
+djangorestframework>=3.15
+django-cors-headers>=4.3
+python-dotenv>=1.0
+
+# --- MongoDB ---
+pymongo[srv]>=4.8
+
+# SRV lookups for Atlas
+dnspython>=2.6
+
+# --- ML / Data ---
+numpy>=1.26
+pandas>=2.2
+scikit-learn>=1.5
+imbalanced-learn>=0.12
+joblib>=1.4
+passlib[bcrypt]>=1.7  
+
+# --- NLP Chat ---
+openai>=1.37
+
+# --- Optional: CV/OCR for attendance (enable if you use these locally) ---
+# opencv-python>=4.9
+# pytesseract>=0.3.10
+
