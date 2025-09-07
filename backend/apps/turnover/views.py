@@ -29,13 +29,13 @@ def _extract_features(doc: dict) -> dict:
     return out
 
 class TurnoverRankView(APIView):
-    permission_classes = [AllowAny]  # dev; tighten for prod
+    permission_classes = [AllowAny]  
 
     def get(self, request):
         limit = int(request.query_params.get("limit", "200"))
         col = get_db()[EMP_COLLECTION]
 
-        # read employee docs (no writes)
+        # read employee docs 
         rows = list(col.find({}, {"_id": 0}))
         if not rows:
             return Response({"count": 0, "model_version": model_version(), "results": []}, status=200)

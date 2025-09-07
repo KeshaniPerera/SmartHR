@@ -1,4 +1,4 @@
-# backend/apps/prehire/views.py
+
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
@@ -10,9 +10,9 @@ import pytz
 from .serializers import PrehireInputSerializer
 from .services import predict_probability, model_version
 from .constants import COLLECTION_NAME
-from apps.common.mongo import get_db  # reusing your existing helper
+from apps.common.mongo import get_db  
 class PrehirePredictView(APIView):
-    permission_classes = [AllowAny]  # dev
+    permission_classes = [AllowAny]  
 
     def post(self, request):
         s = PrehireInputSerializer(data=request.data)
@@ -21,7 +21,7 @@ class PrehirePredictView(APIView):
             return Response({"errors": s.errors}, status=status.HTTP_400_BAD_REQUEST)
 
         features = s.to_feature_dict()
-        meta = s.meta()  # <-- NEW
+        meta = s.meta()  
 
         proba = predict_probability(features)
         threshold = float(getattr(settings, "PREHIRE_THRESHOLD", 0.45))
@@ -31,8 +31,8 @@ class PrehirePredictView(APIView):
         col = db[COLLECTION_NAME]
 
         doc = {
-            **meta,                      # candidate_id, candidate_name
-            "candidate": features,       # original feature payload
+            **meta,                      
+            "candidate": features,       
             "probability": proba,
             "risk_flag": risk_flag,
             "threshold": threshold,

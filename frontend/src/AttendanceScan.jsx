@@ -1,15 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-/**
- * Polished Attendance scanner page (pure JS)
- * - Opens webcam
- * - Lets user pick a camera
- * - One-click Scan or Auto-scan (every few seconds)
- * - Sends frame to Django: POST `${API_BASE}/api/attendance/scan`
- * - Shows friendly status + last result (IN/OUT/Invalid Entry)
- *
- * TailwindCSS required (basic styles used)
- */
+
 export default function AttendanceScan() {
   const API_BASE = import.meta.env.VITE_API_BASE || ""; // e.g. "http://localhost:8000"
 

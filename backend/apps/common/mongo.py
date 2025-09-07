@@ -16,14 +16,14 @@ def _client_singleton():
         "connectTimeoutMS": int(os.getenv("MONGO_CONNECT_TIMEOUT_MS", "8000")),
         "appname": "smarthr-backend",
     }
-    # If you’re behind SSL inspection/proxy, allow a temporary dev bypass
+    # If behind SSL inspection/proxy, allow a temporary dev bypass
     if os.getenv("USE_MONGO_TLS_INSECURE", "0") == "1":
         tls_args["tlsAllowInvalidCertificates"] = True
     else:
         tls_args["tlsCAFile"] = certifi.where()
 
     _client = MongoClient(settings.MONGO_URI, **tls_args)
-    # fail fast if something’s wrong
+    # fail fast 
     _client.admin.command("ping")
     return _client
 

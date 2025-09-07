@@ -9,7 +9,7 @@ from apps.common.mongo import get_db
 
 # ---- helpers ----
 def _session_payload_from_doc(doc):
-    # never return password_hash
+    
     return {
         "emp_id": doc["emp_id"],
         "account_type": doc.get("account_type", "employee"),
@@ -44,9 +44,9 @@ def role_required(roles):
 
 # ---- Views ----
 
-@method_decorator(csrf_exempt, name="dispatch")  # allow login from React without CSRF dance
+@method_decorator(csrf_exempt, name="dispatch")  # allow login from React without CSRF 
 class LoginView(APIView):
-    authentication_classes = []  # we'll set session manually
+    authentication_classes = []  
     permission_classes = []
 
     def post(self, request):
@@ -85,7 +85,7 @@ class LogoutView(APIView):
         request.session.flush()
         return Response({"detail": "ok"})
 
-# Example of a protected endpoint (HR-only)
+
 @method_decorator(role_required(["hr"]), name="dispatch")
 class HROnlyPing(APIView):
     def get(self, request):

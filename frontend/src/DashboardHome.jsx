@@ -1,13 +1,28 @@
+// src/DashboardHome.jsx
 import { Link } from "react-router-dom";
 import RoleGate from "./RoleGate";
 
 export default function DashboardHome() {
   return (
     <>
-      {/* Heading (page-level, below the persistent top bar) */}
-      <section className="dash-head">
-        <h1 className="font-bold text-2xl">Dashboard</h1>
-        <p className="dash-subtitle">Choose a tool to continue</p>
+      {/* Heading with bell on the right */}
+      <section className="dash-head flex items-center justify-between">
+        <div>
+          <h1 className="font-bold text-2xl">Dashboard</h1>
+          <p className="dash-subtitle">Choose a tool to continue</p>
+        </div>
+
+        {/* Bell icon -> Notifications */}
+        <Link
+          to="notifications"
+          className="p-2 rounded-full hover:bg-gray-100"
+          aria-label="Notifications"
+          title="Notifications"
+        >
+          <span role="img" aria-hidden="true" className="text-xl">
+            🔔
+          </span>
+        </Link>
       </section>
 
       {/* Cards */}
@@ -15,7 +30,7 @@ export default function DashboardHome() {
         {/* visible to everyone */}
         <Link to="policy-chat" className="card">
           <div className="card-accent" />
-          <h3 className="font-semibold text-lg">Policy Chat</h3>
+          <h3 className="font-semibold text-lg">Chat Bot</h3>
           <p>Ask policy questions and get instant answers.</p>
         </Link>
 

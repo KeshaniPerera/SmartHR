@@ -2,7 +2,7 @@
 import { Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
 import Layout from "./Layout";
-
+import Notifications from "./Notifications";
 import SignIn from "./SignIn";
 import Home from "./DashboardHome";        // dashboard body (no header)
 import PolicyChat from "./PolicyChat";
@@ -39,6 +39,9 @@ export default function App() {
             <Route path="prehire" element={<PrehireForm />} />
             <Route path="turnover" element={<TurnoverRank />} />
             <Route path="performance" element={<PerformanceRank />} />
+            <Route path="notifications" element={<Notifications />} />
+
+
           </Route>
 
           {/* Fallback */}

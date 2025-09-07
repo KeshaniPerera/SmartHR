@@ -92,21 +92,42 @@ def _act_leave_balance(emp: Dict[str, Any]) -> Dict[str, Any]:
     )
     return {"text": text, "meta": {"balance": b}}
 
+# backend/apps/nlp/executor.py
+
 def _act_leave_status(emp: Dict[str, Any], leave_type: Optional[str]) -> Dict[str, Any]:
     db = get_db()
     q: Dict[str, Any] = {"emp_id": emp["emp_id"]}
     if leave_type:
         q["type"] = leave_type
-    req = db.leave_requests.find(q).sort("created_at", -1).limit(1)
+
+    # Project out _id and select only JSON-safe fields
+    req = db.leave_requests.find(
+        q,
+        {"_id": 0, "type": 1, "status": 1, "start": 1, "end": 1, "created_at": 1}
+    ).sort("created_at", -1).limit(1)
+
     items = list(req)
     if not items:
         return {"text": f"{emp['full_name']}, I couldn't find any leave requests."}
+
     r = items[0]
     text = (
         f"Your last leave ({_fmt_date(r.get('start'))} to {_fmt_date(r.get('end'))}, {r.get('type','')}) "
         f"is **{r.get('status','Unknown')}**."
     )
-    return {"text": text, "meta": {"request": r}}
+    return {
+        "text": text,
+        "meta": {
+            "request": {
+                "type": r.get("type"),
+                "status": r.get("status"),
+                "start": _fmt_date(r.get("start")),
+                "end": _fmt_date(r.get("end")),
+                "created_at": _fmt_date(r.get("created_at")),
+            }
+        }
+    }
+
 
 def _act_leave_howto(leave_type: Optional[str]) -> Dict[str, Any]:
     """

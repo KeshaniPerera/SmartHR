@@ -7,7 +7,7 @@ from apps.common.mongo import get_db
 @permission_classes([AllowAny])
 def policy_query(request):
     q = (request.data.get("q") or "").strip()
-    slug = (request.data.get("slug") or "").strip()  # optional direct fetch by slug
+    slug = (request.data.get("slug") or "").strip()  
     col = get_db().policies
 
     # 1) direct by slug if provided
@@ -83,4 +83,4 @@ def policy_query(request):
             top["alternatives"] = [{"title": r["title"], "slug": r["slug"]} for r in results[1:3]]
         return Response(top)
 
-    return Response({"error": "No matching policy found"}, status=404)
+    return Response({"error": "No Result found"}, status=404)

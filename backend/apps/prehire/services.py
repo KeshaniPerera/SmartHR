@@ -1,4 +1,3 @@
-# backend/apps/prehire/services.py
 import os, json, joblib, threading, hashlib, pandas as pd
 from django.conf import settings
 
