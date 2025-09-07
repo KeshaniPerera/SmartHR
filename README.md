@@ -23,12 +23,12 @@ A full‑stack HR platform that blends **Django REST APIs**, a **React (Vite) fr
 ```
 
 ## Tech Stack
-- **Frontend:** React 19, React Router v7, Tailwind CSS (utility‑first), shadcn/ui
+- **Frontend:** React 19, React Router v7, Tailwind CSS 
 - **Backend:** Django 5, Django REST Framework, PyMongo
 - **ML:** scikit‑learn, imbalanced‑learn, pandas, numpy, joblib
 - **NLP:** OpenAI API (retrieval‑augmented answers; optionally Atlas Vector Search)
 - **DB:** MongoDB Atlas
-- **Dev:** python‑dotenv, CORS headers, JWT (SimpleJWT)
+- **Dev:** python‑dotenv, CORS headers
 
 ## Quick Start
 **Prereqs**
